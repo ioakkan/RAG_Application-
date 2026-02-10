@@ -1,0 +1,21 @@
+# config.yaml
+model_list:
+  - model_name: gpt-4-turbo # This is your Azure "DEPLOYMENT-NAME"
+    litellm_params:
+      model: ollama/llama3 # The actual model served by Ollama
+      api_base: http://ollama:11434 # The internal Docker network address for Ollama
+
+  - model_name: text-embedding-3-small # This is your Azure "DEPLOYMENT-NAME"
+    litellm_params:
+      model: ollama/all-minilm # The actual model served by Ollama
+      api_base: http://ollama:11434 # The internal Docker network address for Ollama
+
+litellm_settings:
+  # Sets the proxy to mimic the Azure OpenAI API structure
+  api_version: "2025-09-01"
+  # Automatically remove unsupported parameters
+  drop_params: True 
+
+# Define a list of valid API keys for authentication
+keys:
+  - "my-secret-key"
