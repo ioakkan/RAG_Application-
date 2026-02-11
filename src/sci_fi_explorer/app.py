@@ -154,7 +154,7 @@ class SciFiExplorer(BaseModel):
      logging.debug(f"retriever is built ")
 
   # Logging the retrieved docs
- def log_docs(self,docs) -> None:
+ def log_docs(self,docs:List[Document]) -> None:
          
          logging.debug(f"===== RETRIEVED DOCS ===== \n the number of  retrieved docs are: {len(docs)}")
 
@@ -201,7 +201,7 @@ class SciFiExplorer(BaseModel):
  
  
   # Function simulating the RAG_application for exploration  by invoking the chain
- def scifi_explore(self,query: str) -> str:
+ def scifi_explore(self,query: str) ->None:
       
       rag_chain = self.build_chain() # Formating  the chain(LCEL) for execution
       logging.debug('chain is ready for execution \n')
@@ -251,10 +251,10 @@ if __name__ == "__main__":
  filepath = "data/" # Filepath to the data
  persist_dir = 'chroma_db' # File where the vectorstore with the text embeddings is saved
  collection_name = "scifi" # Chromadb's collection name
- SciFi_Explorer = SciFiExplorer(filepath=filepath,persist_dir=persist_dir,collection_name=collection_name) #Initializing the SciFiExplorer object
+ SciFi_Explorer = SciFiExplorer(filepath=filepath,persist_dir=persist_dir,collection_name=collection_name) # Initializing the SciFiExplorer object
  SciFi_Explorer.setup_logger() # Setting up the app logger
  SciFi_Explorer.ingest() # Loading the txt file  and turn
- SciFi_Explorer.build_retriever() #Setting the MMR for chromadb as our retriever
+ SciFi_Explorer.build_retriever() # Setting the MMR for chromadb as our retriever
 
  while True:
     query = input("Ask a question (or 'exit'): ")
